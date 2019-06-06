@@ -1,3 +1,4 @@
+//import
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -8,33 +9,33 @@ import java.util.*;
 
 public class Boggle {
     public static final int BOARD_SIZE = 5;
-    public static final int[][] boardDirection = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};
+    public static final int[][] boardDirection = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}}; //The possible directions the prgram can move on the board
 
     public static int minimumWordLength = 3, pointsToPlay = 20, numberOfPlayers = 2, currentPlayerIndex = 0;
 
-    public static char[][] board = new char[BOARD_SIZE][BOARD_SIZE];
-    public static List<Player> players = new ArrayList<>();
+    public static char[][] board = new char[BOARD_SIZE][BOARD_SIZE]; //Create and set a 2d arra for the board
+    public static List<Player> players = new ArrayList<>(); //create and set an arraylist for the players
 
-    public static HashSet<String> validWords = new HashSet<>();
+    public static HashSet<String> validWords = new HashSet<>(); //store the vaids words that exist in the Englsih language
 
-    public static Player getCurrentPlayer() {
+    public static Player getCurrentPlayer() { //get the index of the current player
         return players.get(currentPlayerIndex);
     }
 
-    public static void generateBoard() {
+    public static void generateBoard() { //A method to store the letters on each of the 25 dices
         ArrayList<String> dice = new ArrayList<>(Arrays.asList("AAAFRS", "AAEEEE", "AAFIRS", "ADENNN", "AEEEEM", "AEEGMU", "AEGMNN", "AFIRSY", "BJKQXZ", "CCNSTW", "CEIILT", "CEILPT", "CEIPST", "DDLNOR", "DHHLOR", "DHHNOT", "DHLNOR", "EIIITT", "EMOTTT", "ENSSSU", "FIPRSY", "GORRVW", "HIPRRY", "NOOTUW", "OOOTTU"));
 
-        for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) { //Generate a random letter on a random dice
             for (int j = 0; j < BOARD_SIZE; j++) {
                 int ind = (int) (Math.random() * dice.size());
-                board[i][j] = dice.get(ind).charAt((int) (Math.random() * dice.get(ind).length()));
+                board[i][j] = dice.get(ind).charAt((int)t (Math.random() * dice.get(ind).length()));
                 dice.remove(ind);
             }
         }
     }
 
-    public static boolean recursiveBoggleFind(int x, int y, boolean[][] visited, int searchIndex, String str) {
-        if (searchIndex == str.length()) return true;
+    public static boolean recursiveBoggleFind(int x, int y, boolean[][] visited, int searchIndex, String str) { //check if the word, the user entered is on the baord
+        if (searchIndex == str.length()) return true;  
         visited[x][y] = true;
 
         for (int[] direct : boardDirection) {
